@@ -1,16 +1,6 @@
-package com.app.backend.Repository;
+package com.app.backend.repository.backup;
 
-import com.app.backend.Model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import java.util.Optional;
-import java.util.Locale.Category;
+// Archivo de respaldo eliminado del build principal.
+public class _ProductRepository_Removed {
 
-@Repository
-
-
-public interface SubcategoryRepository extends JpaRepository<Product, Long> {
-    List<Product> findByCategoryId(Long categoryId);
-
-    List<Product> findBySubcategoryId(Long subcategoryId);
 }

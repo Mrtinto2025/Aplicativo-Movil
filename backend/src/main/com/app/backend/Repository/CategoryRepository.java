@@ -1,16 +1,13 @@
-package com.app.backend.Repository;
+package com.app.backend.repository;
 
-import com.app.backend.Model.User;
+import com.app.backend.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
-import java.util.Locale.Category;
 
 @Repository
-
-
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     Optional<Category> findByName(String name);
 
-    boolean existsByUsername(String username);
+    boolean existsByName(String name);
 }

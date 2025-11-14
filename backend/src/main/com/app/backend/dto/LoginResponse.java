@@ -6,7 +6,7 @@ public class LoginResponse {
     private String token;
     private String type = "Bearer";
     private Long id;
-    private String usernamer;
+    private String username;
     private String email;
     private String role;
 
@@ -17,8 +17,8 @@ public class LoginResponse {
         this.token = token;
         this.id = user.getId();
         this.username = user.getUsername();
-        this.email = user.getRole();
-        this.role = user.getRole();
+        this.email = user.getEmail();
+        this.role = user.getRole() != null ? user.getRole().name() : null;
     }
 
     public String getToken() {
@@ -29,11 +29,15 @@ public class LoginResponse {
         this.token = token;
     }
 
-    public String getType(String type) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
         this.type = type;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -41,7 +45,7 @@ public class LoginResponse {
         return username;
     }
 
-    puclic void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -53,11 +57,11 @@ public class LoginResponse {
         this.email = email;
     }
 
-    public String getRole(){
+    public String getRole() {
         return role;
     }
 
-    puclic void setRole(String role) {
+    public void setRole(String role) {
         this.role = role;
-    }   
+    }
 }

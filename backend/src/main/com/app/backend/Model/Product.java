@@ -1,16 +1,12 @@
-package com.app.backend.Model;
+package com.app.backend.model;
 
 import jakarta.persistence.*;
-import lomoboK;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.List;
-
+import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "products")
-
-public class Category {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,60 +33,4 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "subcategory_id", nullable = false)
     private Subcategory subcategory;
-
-    public Long getname(){
-        this.name = name;
-    }
-
-    public Long setname(){
-        this.name = name;
-    }
-
-    public String getdescription(){
-        this.description = description;
-    }
-
-    public Void setdescription(String description){
-        this.description = description;
-    }
-
-    public Double getprice(){
-        this.price = price;
-    }
-
-    public Void setprice(Double price){
-        this.price = price;
-    }
-
-    public Integer getstock(){
-        return  stock;
-    }
-
-    public Void setstock(Integer stock){
-        this.stock = stock;
-    }
-
-    public Boolean getactive(){
-        this.active = active;
-    }
-
-    public Void setactive(Boolean active){
-        this.active = active;
-    }
-
-    public Category getCategory(){
-        this.Subcategories = Subcategories;
-    }
-
-    public Void setCategory(List<Subcategory> Subcategories){
-        this.category= category;
-    }
-
-    public Subcategory getSubcategory(){
-        return Subcategories ;
-    }
-
-    public Void setSubcategory(List<Subcategory> Subcategories){
-        this.subcategory= subcategory;
-    }
 }

@@ -1,16 +1,14 @@
-package com.app.backend.Model;
+package com.app.backend.model;
 
 import jakarta.persistence.*;
-import lomoboK;
+import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
-
 @Data
 @Entity
-@Table(name = "subcatgories")
-
-public class Category {
+@Table(name = "subcategories")
+public class Subcategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,35 +30,4 @@ public class Category {
     @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Product> products;
-
-    public Long getname(){
-        this.name = name;
-    }
-
-    public Long setname(){
-        this.name = name;
-    }
-
-    public String getdescription(){
-        this.description = description;
-    }
-
-    public Void setdescription(String description){
-        this.description = description;
-    }
-    public Boolean getactive(){
-        this.active = active;
-    }
-
-    public Void setactive(Boolean active){
-        this.active = active;
-    }
-
-    public Category getCategory(){
-        this.Subcategories = Subcategories;
-    }
-
-    public Void setCategory(List<Subcategory> Subcategories){
-        this.category= category;
-    }
 }

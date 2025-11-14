@@ -34,7 +34,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -52,12 +51,12 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
-            <version>0.12.3</version>
+            <version>0.12.5</version>
             <scope>runtime</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.proyectlombock</groupId>
+            <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
@@ -76,6 +75,16 @@
     </dependencies>
 
     <build>
+        <!-- El proyecto original tiene los sources bajo el propio directorio del POM
+             (backend/src/main/com/...). Para compilar sin mover archivos, indicamos
+             a Maven que use el directorio del POM como directorio de fuentes y
+             que lea resources desde ${basedir}/resources. -->
+        <sourceDirectory>${project.basedir}</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
             <groupId>org.springframework.boot</groupId>
