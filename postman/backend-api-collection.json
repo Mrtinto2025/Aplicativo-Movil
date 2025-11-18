@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "backend-api-collection-001",
+    "name": "Aplicativo-Movil Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login Admin",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"admin\", \"password\": \"admin123\"}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api","auth","login"] }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if(json && json.token){",
+              "  pm.environment.set('adminToken', json.token);",
+              "  pm.environment.set('authHeaderAdmin', 'Bearer ' + json.token);",
+              "}",
+              "pm.test('Login returned token', function(){ pm.expect(json.token).to.be.a('string'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create User (coord)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"coord1\", \"email\": \"coord1@example.com\", \"password\": \"coordpass\", \"role\": \"COORDINADOR\", \"active\": true}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/users", "host": ["{{baseUrl}}"], "path": ["api","users"] }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var json = pm.response.json();",
+              "if(json && json.id){ pm.environment.set('coordId', json.id); }",
+              "pm.test('User created', function(){ pm.expect(json.id).to.exist; });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login Coord",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\"username\": \"coord1\", \"password\": \"coordpass\"}" },
+        "url": { "raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api","auth","login"] }
+      },
+      "response": [],
+      "event": [ { "listen": "test", "script": { "exec": [ "var json = pm.response.json(); if(json && json.token){ pm.environment.set('coordToken', json.token); pm.environment.set('authHeaderCoord', 'Bearer ' + json.token); } pm.test('Coord login token', function(){ pm.expect(json.token).to.be.a('string'); });" ], "type": "text/javascript" } } ]
+    },
+    {
+      "name": "Create Category",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{adminToken}}" } ],
+        "body": { "mode": "raw", "raw": "{\"name\": \"Bebidas\", \"description\": \"Bebidas frías y calientes\", \"active\": true }" },
+        "url": { "raw": "{{baseUrl}}/api/categories", "host": ["{{baseUrl}}"], "path": ["api","categories"] }
+      },
+      "response": [],
+      "event": [ { "listen": "test", "script": { "exec": [ "var json = pm.response.json(); if(json && json.id){ pm.environment.set('categoryId', json.id); } pm.test('Category created', function(){ pm.expect(json.id).to.exist; });" ], "type": "text/javascript" } } ]
+    },
+    {
+      "name": "Update Category",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{adminToken}}" } ],
+        "body": { "mode": "raw", "raw": "{\"name\": \"Bebidas y Snacks\", \"description\": \"Bebidas y snacks variados\", \"active\": true }" },
+        "url": { "raw": "{{baseUrl}}/api/categories/{{categoryId}}", "host": ["{{baseUrl}}"], "path": ["api","categories","{{categoryId}}"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Subcategory",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{adminToken}}" } ],
+        "body": { "mode": "raw", "raw": "{\"name\": \"Refrescos\", \"description\": \"Gaseosas y bebidas azucaradas\", \"active\": true, \"category\": { \"id\": {{categoryId}} } }" },
+        "url": { "raw": "{{baseUrl}}/api/subcategories", "host": ["{{baseUrl}}"], "path": ["api","subcategories"] }
+      },
+      "response": [],
+      "event": [ { "listen": "test", "script": { "exec": [ "var json = pm.response.json(); if(json && json.id){ pm.environment.set('subcategoryId', json.id); } pm.test('Subcategory created', function(){ pm.expect(json.id).to.exist; });" ], "type": "text/javascript" } } ]
+    },
+    {
+      "name": "Update Subcategory",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{adminToken}}" } ],
+        "body": { "mode": "raw", "raw": "{\"name\": \"Refrescos Light\", \"description\": \"Gaseosas bajas en azúcar\", \"active\": true }" },
+        "url": { "raw": "{{baseUrl}}/api/subcategories/{{subcategoryId}}", "host": ["{{baseUrl}}"], "path": ["api","subcategories","{{subcategoryId}}"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{adminToken}}" } ],
+        "body": { "mode": "raw", "raw": "{\"name\": \"Coca-Cola 500ml\", \"description\": \"Refresco en botella de 500ml\", \"price\": 1.5, \"stock\": 100, \"active\": true, \"category\": { \"id\": {{categoryId}} }, \"subcategory\": { \"id\": {{subcategoryId}} } }" },
+        "url": { "raw": "{{baseUrl}}/api/products", "host": ["{{baseUrl}}"], "path": ["api","products"] }
+      },
+      "response": [],
+      "event": [ { "listen": "test", "script": { "exec": [ "var json = pm.response.json(); if(json && json.id){ pm.environment.set('productId', json.id); } pm.test('Product created', function(){ pm.expect(json.id).to.exist; });" ], "type": "text/javascript" } } ]
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{adminToken}}" } ],
+        "body": { "mode": "raw", "raw": "{\"name\": \"Coca-Cola 500ml\", \"description\": \"Refresco en botella de 500ml\", \"price\": 1.75, \"stock\": 90, \"active\": true, \"category\": { \"id\": {{categoryId}} }, \"subcategory\": { \"id\": {{subcategoryId}} } }" },
+        "url": { "raw": "{{baseUrl}}/api/products/{{productId}}", "host": ["{{baseUrl}}"], "path": ["api","products","{{productId}}"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Deactivate Product",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{adminToken}}" } ],
+        "body": { "mode": "raw", "raw": "{\"name\": \"Coca-Cola 500ml\", \"description\": \"Refresco en botella de 500ml\", \"price\": 1.75, \"stock\": 90, \"active\": false, \"category\": { \"id\": {{categoryId}} }, \"subcategory\": { \"id\": {{subcategoryId}} } }" },
+        "url": { "raw": "{{baseUrl}}/api/products/{{productId}}", "host": ["{{baseUrl}}"], "path": ["api","products","{{productId}}"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [ { "key": "Authorization", "value": "Bearer {{adminToken}}" } ],
+        "url": { "raw": "{{baseUrl}}/api/products/{{productId}}", "host": ["{{baseUrl}}"], "path": ["api","products","{{productId}}"] }
+      },
+      "response": []
+    }
+  ]
+}

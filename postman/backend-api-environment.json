@@ -1,0 +1,14 @@
+{
+  "id": "backend-api-environment-001",
+  "name": "Aplicativo-Movil Local",
+  "values": [
+    { "key": "baseUrl", "value": "http://localhost:8080", "enabled": true },
+    { "key": "adminToken", "value": "", "enabled": true },
+    { "key": "coordToken", "value": "", "enabled": true },
+    { "key": "categoryId", "value": "", "enabled": true },
+    { "key": "subcategoryId", "value": "", "enabled": true },
+    { "key": "productId", "value": "", "enabled": true },
+    { "key": "coordId", "value": "", "enabled": true }
+  ],
+  "timestamp": 0
+}

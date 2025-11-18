@@ -1,6 +1,6 @@
-package com.app.backend.repository.backup;
+package com.app.backend.repository;
 
-// Archivo de respaldo eliminado del build principal.
-public class _ProductRepository_Removed {
+// Archivo de respaldo: clase no pública para evitar errores de compilación
+class _ProductRepository_Removed {
 
 }

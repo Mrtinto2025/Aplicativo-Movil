@@ -1,11 +1,11 @@
 package com.app.backend.config;
 
 import com.app.backend.model.User;
-import com.app.backend.Category;
+import com.app.backend.model.Category;
 import com.app.backend.repository.UserRepository;
 import com.app.backend.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.commandLineRunner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 

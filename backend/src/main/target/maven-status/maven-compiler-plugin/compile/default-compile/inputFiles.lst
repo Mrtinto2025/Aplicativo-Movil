@@ -27,6 +27,7 @@ C:\xampp\htdocs\App\Aplicativo-Movil\backend\src\main\com\app\backend\dto\LoginR
 C:\xampp\htdocs\App\Aplicativo-Movil\backend\src\main\com\app\backend\Controller\AuthController.java
 C:\xampp\htdocs\App\Aplicativo-Movil\backend\src\main\com\app\backend\BackendApplication.java
 C:\xampp\htdocs\App\Aplicativo-Movil\backend\src\main\com\app\backend\Repository\CategoryRepository.java
+C:\xampp\htdocs\App\Aplicativo-Movil\backend\src\main\com\app\backend\security\JwtTokenProvider.java
 C:\xampp\htdocs\App\Aplicativo-Movil\backend\src\main\com\app\backend\Service\SubCategoryService.java
 C:\xampp\htdocs\App\Aplicativo-Movil\backend\src\main\com\app\backend\Service\StatsService.java
 C:\xampp\htdocs\App\Aplicativo-Movil\backend\src\main\com\app\backend\Controller\CategoryController.java
